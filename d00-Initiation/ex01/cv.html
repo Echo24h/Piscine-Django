@@ -1,69 +1,71 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CV de John Doe</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>CV</title>
+    <style>
+        table {
+            border-collapse: collapse;
+            border: solid 2px red;
+        }
+
+        th {
+            border: 1px solid red;
+            width: 200px;
+        }
+
+        td {
+            border: 1px solid red;
+        }
+
+        tr {
+            border: 1px solid red;
+            text-align: center;
+        }
+        
+    </style>
 </head>
 <body>
-    <header>
-        <h1>John Doe</h1>
-        <p>Développeur Web</p>
-    </header>
+    <h1>CV</h1>
 
-    <section id="introduction">
-        <h2>Introduction</h2>
-        <p>Passionné par le développement web et toujours en quête de nouveaux défis.</p>
-    </section>
+    <table>
+        <tr>
+            <th colspan="2">Information 1</th>
+        </tr>
+        <tr>
+            <td>First Name</td>
+            <td>John</td>
+        </tr>
+        <tr>
+            <th colspan="2">Information 2</th>
+        </tr>
+        <tr>
+            <td>Last Name</td>
+            <td>Doe</td>
+        </tr>
+        <tr>
+            <th colspan="2">Information 3</th>
+        </tr>
+        <tr>
+            <td>Rank</td>
+            <td style="border: 3px solid #424242">Noob</td>
+        </tr>
+    </table>
 
-    <section id="competences">
-        <h2>Compétences</h2>
+    <div>
+        <h2>Skills</h2>
         <ul>
-            <li>HTML/CSS</li>
+            <li>HTML</li>
+            <li>CSS</li>
             <li>JavaScript</li>
-            <li>Python</li>
-            <li>Frameworks: Django</li>
         </ul>
-    </section>
 
-    <section id="parcours">
-        <h2>Parcours</h2>
+        <h2>Langue</h2>
         <ol>
-            <li>École 42 - Formation Développeur (2020-2023)</li>
-            <li>Stage chez XYZ Corp - Développeur Front-end (2022)</li>
-            <li>Développeur Freelance (2023 - présent)</li>
+            <li>English</li>
+            <li>French</li>
         </ol>
-    </section>
-
-    <section id="contact">
-        <h2>Contact</h2>
-        <table>
-            <tr>
-                <th>Type</th>
-                <th>Détail</th>
-            </tr>
-            <tr>
-                <td>Email</td>
-                <td>john.doe@example.com</td>
-            </tr>
-            <tr>
-                <td>Téléphone</td>
-                <td>+33 6 12 34 56 78</td>
-            </tr>
-            <tr>
-                <td>Adresse</td>
-                <td>123 Rue de Exemple, 75001 Paris</td>
-            </tr>
-            <tr>
-                <td>LinkedIn</td>
-                <td>linkedin.com/in/johndoe</td>
-            </tr>
-            <tr>
-                <td>GitHub</td>
-                <td style="border-color: #424242;">github.com/johndoe</td>
-            </tr>
-        </table>
-    </section>
+    </div>
 </body>
 </html>
