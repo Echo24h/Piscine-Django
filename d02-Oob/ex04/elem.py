@@ -33,14 +33,15 @@ class Elem:
 
         Obviously.
         """
-        # str can't be used :
-        if type(content) == str:
+        is_valid_content = self.check_type(content)
+
+        if not is_valid_content and content is not None:
             raise self.ValidationError
         
         self.tag = tag
         self.attr = attr
         self.content = []
-        if self.check_type(content):
+        if is_valid_content:
             self.add_content(content)
         self.tag_type = tag_type
 
