@@ -7,19 +7,25 @@ class Text(str):
 
     Because directly using str class was too mainstream.
     """
-
     def __str__(self):
         """
         Do you really need a comment to understand this method?..
         """
-        return super().__str__().replace('\n', '\n<br />\n')
+        return super().__str__()\
+            .replace('<', '&lt;')\
+            .replace('>', '&gt;')\
+            .replace('"', '&quot;')\
+            .replace('\n', '\n<br />\n')
 
 
 class Elem:
     """
     Elem will permit us to represent our HTML elements.
     """
-    [...]
+    class ValidationError(Exception):
+        def __init__(self):
+            Exception.__init__(self, "Error: This content is not valid.")
+
 
     def __init__(self, tag='div', attr={}, content=None, tag_type='double'):
         """
@@ -27,7 +33,17 @@ class Elem:
 
         Obviously.
         """
-        [...]
+        # str can't be used :
+        if type(content) == str:
+            raise self.ValidationError
+        
+        self.tag = tag
+        self.attr = attr
+        self.content = []
+        if self.check_type(content):
+            self.add_content(content)
+        self.tag_type = tag_type
+
 
     def __str__(self):
         """
@@ -37,10 +53,14 @@ class Elem:
         elements...).
         """
         if self.tag_type == 'double':
-            [...]
+            return '<' + self.tag + self.__make_attr() + '>' + \
+                        self.__make_content() + '</' + self.tag + '>'
         elif self.tag_type == 'simple':
-            [...]
-        return result
+            return '<' + self.tag + self.__make_attr() + ' />' + \
+                        self.__make_content()
+        else:
+            return ""
+
 
     def __make_attr(self):
         """
@@ -51,17 +71,19 @@ class Elem:
             result += ' ' + str(pair[0]) + '="' + str(pair[1]) + '"'
         return result
 
+
     def __make_content(self):
         """
         Here is a method to render the content, including embedded elements.
         """
-
         if len(self.content) == 0:
             return ''
         result = '\n'
         for elem in self.content:
-            result += [...]
+            result += str(elem) + '\n'
+        result = "  ".join(line for line in result.splitlines(True))
         return result
+
 
     def add_content(self, content):
         if not Elem.check_type(content):
@@ -70,6 +92,7 @@ class Elem:
             self.content += [elem for elem in content if elem != Text('')]
         elif content != Text(''):
             self.content.append(content)
+
 
     @staticmethod
     def check_type(content):
@@ -84,4 +107,11 @@ class Elem:
 
 
 if __name__ == '__main__':
-    [...]
+    
+    # Test the Text class
+    text = Text("Hello")
+    print(text)
+    
+    # Test the Elem class
+    elem = Elem(tag='html', content=[Elem(tag='head', content=[Elem(tag='title', content=[Text('Hello ground!')])]), Elem(tag='body', content=[Elem(tag='h1', content=[Text('Oh no, not again!')]), Elem(tag='img', attr={'src': 'http://i.imgur.com/pfp3T.jpg'}, tag_type='simple')])])
+    print(elem)
