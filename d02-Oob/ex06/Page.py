@@ -91,7 +91,8 @@ class Page:
             return True
         
         if isinstance(elem, Table) and all(isinstance(content, Tr) for content in elem.content):
-            return True
+            if all(self.__recursive_check(content) for content in elem.content):
+                return True
         
         return False
     
@@ -171,14 +172,221 @@ def __test_html_head() -> None:
         print("__test_html_head() 3 failure")
 
 
+def __test_title_h1_h2_li_th_td_p_span() -> None:
+
+    # Test 1
+
+    html = Html([
+            Head([
+                Title(content=Text('"Hello ground!"'))
+            ]),
+            Body([
+                H1(content=Text('"Hello ground!"')),
+                H2(content=Text('"Hello ground!"')),
+                Ul([
+                    Li(content=Text('"Hello ground!"')),
+                    Li(content=Text('"Hello ground!"')),
+                    Li(content=Text('"Hello ground!"')),
+                ]),
+                Ol([
+                    Li(content=Text('"Hello ground!"')),
+                    Li(content=Text('"Hello ground!"')),
+                    Li(content=Text('"Hello ground!"')),
+                ]),
+                Table([
+                    Tr([
+                        Th(content=Text('"Hello ground!"')),
+                        Th(content=Text('"Hello ground!"')),
+                        Th(content=Text('"Hello ground!"')),
+                    ]),
+                    Tr([
+                        Td(content=Text('"Hello ground!"')),
+                        Td(content=Text('"Hello ground!"')),
+                        Td(content=Text('"Hello ground!"')),
+                    ]),
+                ]),
+            ])
+        ])
+    page = Page(html)
+    if page.is_valid():
+        print("__test_title_h1_h2_li_th_td_p_span() 1 success")
+    else:
+        print("__test_title_h1_h2_li_th_td_p_span() 1 failure")
+
+    # Test 1
+
+    html = Html([
+            Head([
+                Title(content=Text('"Hello ground!"'))
+            ]),
+            Body([
+                H1(),
+                H2(content=Text('"Hello ground!"')),
+                Ul([
+                    Li(content=Text('"Hello ground!"')),
+                    Li(content=Text('"Hello ground!"')),
+                    Li(content=Text('"Hello ground!"')),
+                ]),
+                Ol([
+                    Li(content=Text('"Hello ground!"')),
+                    Li(content=Text('"Hello ground!"')),
+                    Li(content=Text('"Hello ground!"')),
+                ]),
+                Table([
+                    Tr([
+                        Th(content=Text('"Hello ground!"')),
+                        Th(content=Text('"Hello ground!"')),
+                        Th(content=Text('"Hello ground!"')),
+                    ]),
+                    Tr([
+                        Td(content=Text('"Hello ground!"')),
+                        Td(content=Text('"Hello ground!"')),
+                        Td(content=Text('"Hello ground!"')),
+                    ]),
+                ]),
+            ])
+        ])
+    page = Page(html)
+    if page.is_valid():
+        print("__test_title_h1_h2_li_th_td_p_span() 2 failure")
+    else:
+        print("__test_title_h1_h2_li_th_td_p_span() 2 success")
+
+
+def __test_ul_ol() -> None:
+
+    # Test 1
+
+    html = Html([
+            Head([
+                Title(content=Text('"Hello ground!"'))
+            ]),
+            Body([
+                Ul([
+                    Li(content=Text('"Hello ground!"')),
+                    Li(content=Text('"Hello ground!"')),
+                    Li(content=Text('"Hello ground!"')),
+                ]),
+                Ol([
+                    Li(content=Text('"Hello ground!"')),
+                    Li(content=Text('"Hello ground!"')),
+                    Li(content=Text('"Hello ground!"')),
+                ]),
+            ])
+        ])
+    page = Page(html)
+    if page.is_valid():
+        print("__test_ul_ol() 1 success")
+    else:
+        print("__test_ul_ol() 1 failure")
+
+    # Test 2
+
+    html = Html([
+            Head([
+                Title(content=Text('"Hello ground!"'))
+            ]),
+            Body([
+                Ul([
+                ]),
+                Ol([
+                ]),
+            ])
+        ])
+    page = Page(html)
+    if not page.is_valid():
+        print("__test_ul_ol() 2 success")
+    else:
+        print("__test_ul_ol() 2 failure")
+
+    # Test 3
+
+    html = Html([
+            Head([
+                Title(content=Text('"Hello ground!"'))
+            ]),
+            Body([
+                Ul([
+                    P(content=Text('"Hello ground!"')),
+                    Li(content=Text('"Hello ground!"')),
+                ]),
+                Ol([
+                    Li(content=Text('"Hello ground!"')),
+                    P(content=Text('"Hello ground!"')),
+                ]),
+            ])
+        ])
+    page = Page(html)
+    if not page.is_valid():
+        print("__test_ul_ol() 3 success")
+    else:
+        print("__test_ul_ol() 3 failure")
+
+
+def __test_table_tr() -> None:
+
+    # Test 1
+
+    html = Html([
+            Head([
+                Title(content=Text('"Hello ground!"'))
+            ]),
+            Body([
+                Table([
+                    Tr([
+                        Th(content=Text('"Hello ground!"')),
+                        Th(content=Text('"Hello ground!"')),
+                        Th(content=Text('"Hello ground!"')),
+                    ]),
+                    Tr([
+                        Td(content=Text('"Hello ground!"')),
+                        Td(content=Text('"Hello ground!"')),
+                        Td(content=Text('"Hello ground!"')),
+                    ]),
+                ]),
+            ])
+        ])
+    page = Page(html)
+    if page.is_valid():
+        print("__test_table_tr() 1 success")
+    else:
+        print("__test_table_tr() 1 failure")
+
+    # Test 2
+
+    html = Html([
+            Head([
+                Title(content=Text('"Hello ground!"'))
+            ]),
+            Body([
+                Table([
+                    Tr([
+                        Th(content=Text('"Hello ground!"')),
+                        Th(content=Text('"Hello ground!"')),
+                        Th(content=Text('"Hello ground!"')),
+                    ]),
+                    Tr([
+                        Td(content=Text('"Hello ground!"')),
+                        Th(content=Text('"Hello ground!"')),
+                        Td(content=Text('"Hello ground!"')),
+                        P(content=Text('"Hello ground!"')),
+                    ]),
+                ]),
+            ])
+        ])
+    page = Page(html)
+    if not page.is_valid():
+        print("__test_table_tr() 2 success")
+    else:
+        print("__test_table_tr() 2 failure")
+
+
 def tester() -> None:
     __test_node()
     __test_html_head()
     __test_title_h1_h2_li_th_td_p_span()
     __test_ul_ol()
-    __test_tr()
-    __test_table()
-
+    __test_table_tr()
 
 if __name__ == "__main__":
     tester()
