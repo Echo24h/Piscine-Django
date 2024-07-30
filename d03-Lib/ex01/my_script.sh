@@ -2,7 +2,7 @@
 
 pip --version
 
-pip install --force-reinstall --target=./local_lib git+https://github.com/jaraco/path.git > install.log 2>&1
+pip install --force-reinstall --target=./local_lib git+https://github.com/jaraco/path.git > my_script.log 2>&1
 
 # Vérifier si l'installation a réussi
 if [ $? -eq 0 ]; then
