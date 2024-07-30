@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Ex01 : Django, framework web{% endblock %}
+
+{% block style %}
+<link rel="stylesheet" type="text/css" href="{% static 'ex01/style1.css' %}">
+{% endblock %}
+
+{% block content %}
+<h1>Ex01 : Django, framework web</h1>
+<h2>Qu'est-ce que Django ?</h2>
+<p>Django est un framework web haut niveau écrit en Python, conçu pour aider les développeurs à créer des applications web rapidement et avec un minimum de code. Django suit le principe "Don't Repeat Yourself" (DRY), ce qui signifie qu'il encourage la réutilisation du code et la réduction des redondances. Le framework offre une multitude de fonctionnalités intégrées, telles que :</p>
+<ul>
+    <li>Un ORM (Object-Relational Mapping) pour interagir avec les bases de données.</li>
+    <li>Un système de templating pour générer des pages HTML de manière dynamique.</li>
+    <li>Un système d'authentification robuste.</li>
+    <li>Des outils de validation et de sécurisation des formulaires.</li>
+    <li>Une interface d'administration générée automatiquement.</li>
+</ul>
+<p>Django est également reconnu pour sa sécurité, car il inclut des protections contre des attaques courantes comme l'injection SQL, les falsifications de requêtes intersites (CSRF), et le scriptage intersite (XSS).</p>
+
+<h2>Historique de Django</h2>
+<ul>
+    <li><strong>2003</strong> : Le développement de Django commence au sein de la société de développement web Lawrence Journal-World, où Adrian Holovaty et Simon Willison travaillent sur plusieurs applications web pour le journal en ligne.</li>
+    <li><strong>Juillet 2005</strong> : Django est publié en open source sous une licence BSD. Le framework est nommé d'après Django Reinhardt, un célèbre guitariste de jazz.</li>
+    <li><strong>Septembre 2008</strong> : Django 1.0 est officiellement publié. Cette version marque la maturité du framework et introduit une API stable.</li>
+    <li><strong>Mars 2011</strong> : Django 1.3 est publié, apportant le support pour les applications réutilisables et le déploiement simplifié.</li>
+    <li><strong>Octobre 2013</strong> : Django 1.6 introduit le support pour les migrations de bases de données via l'outil South.</li>
+    <li><strong>Septembre 2014</strong> : Django 1.7 intègre officiellement les migrations de bases de données, éliminant la nécessité de South.</li>
+    <li><strong>Avril 2015</strong> : Django 1.8 est publié et devient la première version à bénéficier d'un support à long terme (LTS).</li>
+    <li><strong>Août 2016</strong> : Django 1.10 introduit les middlewares, améliorant la modularité et la gestion des requêtes/réponses.</li>
+    <li><strong>Avril 2019</strong> : Django 2.2 est publié, offrant des améliorations de performance et une meilleure compatibilité avec Python 3.7.</li>
+    <li><strong>Décembre 2020</strong> : Django 3.1 apporte le support pour les fonctionnalités asynchrones, permettant de meilleures performances pour les applications web modernes.</li>
+    <li><strong>Avril 2021</strong> : Django 3.2 est publié en tant que version LTS, intégrant de nombreuses améliorations et de nouvelles fonctionnalités.</li>
+</ul>
+<p>Aujourd'hui, Django est utilisé par de nombreuses grandes entreprises et organisations, telles que Instagram, Pinterest, Mozilla, et la NASA. Sa communauté active et sa documentation exhaustive en font un choix populaire pour les développeurs souhaitant créer des applications web robustes et évolutives.</p>
+{% endblock %}

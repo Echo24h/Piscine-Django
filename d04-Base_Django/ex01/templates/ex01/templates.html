@@ -1,0 +1,74 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Ex01 : Moteur de template{% endblock %}
+
+{% block style %}
+<link rel="stylesheet" type="text/css" href="{% static 'ex01/style2.css' %}">
+{% endblock %}
+
+{% block content %}
+{% verbatim %}
+<h1>Ex01 : Moteur de template</h1>
+<h2>Introduction</h2>
+<p>Le moteur de templates de Django permet de générer du HTML de manière dynamique en séparant la logique de l'affichage. Les templates peuvent inclure des variables et des structures de contrôle pour créer des pages web dynamiques et réutilisables.</p>
+
+<h2>Fonctionnement du moteur de templates</h2>
+<p>Le moteur de templates de Django utilise des balises et des filtres pour insérer du contenu dynamique dans les pages HTML. Les templates sont des fichiers texte contenant des balises spéciales entourées de crochets <code>{% %}</code> pour les balises de contrôle et de doubles crochets <code>{{ }}</code> pour les variables.</p>
+
+<h3>Les blocs</h3>
+<p>Les blocs permettent de définir des sections réutilisables et remplaçables dans les templates. Ils sont souvent utilisés dans les templates de base pour permettre l'héritage des templates enfants.</p>
+<pre><code>
+{% raw %}{% block content %}
+<p>Contenu par défaut. Remplacé dans les templates enfants.</p>
+{% endblock %}{% endraw %}
+</code></pre>
+
+<h3>Les boucles for ... in</h3>
+<p>Les boucles <code>for ... in</code> sont utilisées pour itérer sur des listes ou des objets semblables à des listes. Elles permettent de générer du contenu répété dans les templates.</p>
+<pre><code>
+{% raw %}{% for item in items %}
+<p>{{ item }}</p>
+{% endfor %}{% endraw %}
+</code></pre>
+
+<h3>Les structures de contrôle if</h3>
+<p>Les structures de contrôle <code>if</code> permettent d'inclure des conditions dans les templates. Elles peuvent être utilisées pour afficher ou masquer du contenu en fonction de conditions spécifiques.</p>
+<pre><code>
+{% raw %}{% if user.is_authenticated %}
+<p>Bonjour, {{ user.username }} !</p>
+{% else %}
+<p>Bonjour, visiteur !</p>
+{% endif %}{% endraw %}
+</code></pre>
+
+<h3>Affichage de variables passées par contexte</h3>
+<p>Les variables passées par contexte sont insérées dans les templates en utilisant des doubles crochets <code>{{ }}</code>. Ces variables sont souvent fournies par les vues et peuvent contenir des données dynamiques.</p>
+<pre><code>
+{% raw %}<p>{{ message }}</p>{% endraw %}
+</code></pre>
+
+<h2>Exemple complet</h2>
+<p>Voici un exemple complet utilisant des blocs, des boucles <code>for ... in</code>, des structures de contrôle <code>if</code>, et des variables passées par contexte.</p>
+<pre><code>
+{% raw %}{% extends "base.html" %}
+
+{% block title %}Exemple de moteur de template{% endblock %}
+
+{% block content %}
+<h1>Exemple de moteur de template</h1>
+
+{% if user.is_authenticated %}
+<p>Bonjour, {{ user.username }} !</p>
+{% else %}
+<p>Bonjour, visiteur !</p>
+{% endif %}
+
+<h2>Liste des items</h2>
+{% for item in items %}
+<p>{{ item }}</p>
+{% endfor %}
+{% endblock %}{% endraw %}
+</code></pre>
+{% endverbatim %}
+{% endblock %}

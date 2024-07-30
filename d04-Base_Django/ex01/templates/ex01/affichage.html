@@ -1,0 +1,60 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Ex01 : Processus d'affichage d'une page statique{% endblock %}
+
+{% block style %}
+<link rel="stylesheet" type="text/css" href="{% static 'ex01/style1.css' %}">
+{% endblock %}
+
+{% block content %}
+<h1>Ex01 : Processus d'affichage d'une page statique</h1>
+<h2>Introduction</h2>
+<p>Ce document décrit le processus complet de l'affichage d'une page web statique dans un projet Django, depuis la requête initiale du client jusqu'à la réponse du serveur, en passant par une vue et l'utilisation d'un template.</p>
+
+<h2>Étapes du processus</h2>
+<h3>1. La requête HTTP</h3>
+<p>Tout commence lorsqu'un utilisateur saisit une URL dans son navigateur ou clique sur un lien. Le navigateur envoie alors une requête HTTP vers le serveur Django.</p>
+
+<h3>2. Le routeur URL</h3>
+<p>À la réception de la requête, Django utilise son système de routage d'URL pour déterminer quelle vue doit traiter la requête. Ce processus est basé sur les correspondances entre les URL définies dans <code>urls.py</code> et les vues associées.</p>
+<pre><code>
+# urls.py
+from django.urls import path
+from . import views
+
+urlpatterns = [
+path('affichage/', views.affichage, name='affichage'),
+]
+</code></pre>
+
+<h3>3. La vue</h3>
+<p>Une fois que le routeur URL a trouvé une correspondance, il appelle la vue correspondante. La vue est une fonction ou une classe qui contient la logique nécessaire pour traiter la requête et préparer une réponse. Pour une page statique simple, la vue peut se contenter de rendre un template.</p>
+<pre><code>
+# views.py
+from django.shortcuts import render
+
+def affichage(request):
+return render(request, 'ex01/affichage.html')
+</code></pre>
+
+<h3>4. Le moteur de template</h3>
+<p>La vue appelle le moteur de template de Django pour rendre le fichier HTML spécifié. Le moteur de template charge le template, remplit les variables dynamiques (s'il y en a) et produit le contenu HTML final.</p>
+
+<h3>5. La réponse HTTP</h3>
+<p>Le contenu HTML généré par le moteur de template est encapsulé dans une réponse HTTP. Django envoie cette réponse au navigateur de l'utilisateur.</p>
+
+<h3>6. L'affichage dans le navigateur</h3>
+<p>Le navigateur reçoit la réponse HTTP et affiche le contenu HTML à l'utilisateur, complétant ainsi le cycle de la requête à la réponse.</p>
+
+<h2>Résumé</h2>
+<p>Le processus d'affichage d'une page web statique dans Django suit un chemin bien défini :</p>
+<ol>
+    <li>Le navigateur envoie une requête HTTP au serveur Django.</li>
+    <li>Django utilise le routeur URL pour faire correspondre la requête à une vue.</li>
+    <li>La vue traite la requête et utilise le moteur de template pour rendre un fichier HTML.</li>
+    <li>Django envoie la réponse HTTP contenant le HTML rendu au navigateur.</li>
+    <li>Le navigateur affiche la page web statique à l'utilisateur.</li>
+</ol>
+<p>Ce processus est simple mais puissant, permettant une grande flexibilité dans la manière dont les pages web sont générées et affichées.</p>
+{% endblock %}
