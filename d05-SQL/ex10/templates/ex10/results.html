@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Search Results</title>
+</head>
+<body>
+    <h1>Search Results</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>Character Name</th>
+                <th>Gender</th>
+                <th>Movie Title</th>
+                <th>Homeworld</th>
+                <th>Planet Diameter</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for person in results %}
+                {% for movie in person.movies.all %}
+                    <tr>
+                        <td>{{ person.name }}</td>
+                        <td>{{ person.gender }}</td>
+                        <td>{{ movie.title }}</td>
+                        <td>{{ person.homeworld.name }}</td>
+                        <td>{{ person.homeworld.diameter }}</td>
+                    </tr>
+                {% endfor %}
+            {% empty %}
+                <tr>
+                    <td colspan="5">No data available</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>
