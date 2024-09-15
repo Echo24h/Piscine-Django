@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Life Pro Tips</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap.min.css' %}">
+</head>
+<body>
+    <nav class="navbar navbar-light bg-light">
+        <a class="navbar-brand" href="#">Hello {{ username }}!</a>
+    </nav>
+    <div class="container">
+        <h1>Welcome to Life Pro Tips</h1>
+        <p>Share your best tips here.</p>
+    </div>
+    <script src="{% static 'jquery/jquery.min.js' %}"></script>
+    <script src="{% static 'bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+</body>
+</html>
